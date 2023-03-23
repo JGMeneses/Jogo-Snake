@@ -1,0 +1,51 @@
+@import url("");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans","sans-serif";
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to  bottom,#6d2674,#dfd1e0,#47184b);
+    
+}
+
+.wrapper{
+    width: 65vmin; /*largura*/
+    height: 70vmin;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #5b0363;
+    border-radius: 5px;
+}
+
+.game-details{
+    color: aliceblue;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 20px 27px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.play-board{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: repeat(30, 1fr) / repeat(30, 1fr);
+    background: #000000;
+}
+
+.play-board .food{
+    background: aqua;
+}
+.play-board .head{
+    background: rgb(107, 0, 102);
+}
