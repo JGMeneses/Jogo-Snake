@@ -12,7 +12,7 @@ let score=0;
 
 // mostrando o maior score vindo do local storage
 let highScore = localStorage.getItem("high-score") || 0;
-highScoreElment.innerText = `Maior Pontuação: ${highScore}`
+highScoreElment.innerText = `Maior Pontuação: ${highScore}`;
 
 const changeFoodPosition = ()  =>{
     //passando um valor aleatorio para a posição da comida posicionada no tabuleiro de 0-30
