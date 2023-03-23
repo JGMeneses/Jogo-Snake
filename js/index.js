@@ -1,5 +1,7 @@
 const playBoard = document.querySelector(".play-board");
 const scoreElement = document.querySelector(".score");
+const highScoreElment = document.querySelector(".high-score");
+
 let foodX , foodY;
 let snakeX = 5, snakeY=10;
 let velocityX = 0, velocityY = 0;
@@ -7,6 +9,11 @@ let bodySnake= [];
 let gameOver = false;
 let setintervalId;
 let score=0;
+
+// mostrando o maior score vindo do local storage
+let highScore = localStorage.getItem("high-score") || 0;
+highScoreElment.innerText = `Maior Pontuação: ${highScore}`
+
 const changeFoodPosition = ()  =>{
     //passando um valor aleatorio para a posição da comida posicionada no tabuleiro de 0-30
     foodX =Math.floor(Math.random()*30) +1;
@@ -47,6 +54,9 @@ const  initGame = () => {
         changeFoodPosition();
         bodySnake.push([foodX,foodY]); // adicionando a comida ao corpo da cobra
         score++;
+
+        highScore  = score >= highScore ? score : highScore;
+        localStorage.setItem("high-score", highScore);
         scoreElement.innerText = `Pontuação: ${score}`;
     }
 
