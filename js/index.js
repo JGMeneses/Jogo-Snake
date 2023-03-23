@@ -1,11 +1,12 @@
 const playBoard = document.querySelector(".play-board");
+const scoreElement = document.querySelector(".score");
 let foodX , foodY;
 let snakeX = 5, snakeY=10;
 let velocityX = 0, velocityY = 0;
 let bodySnake= [];
 let gameOver = false;
 let setintervalId;
-
+let score=0;
 const changeFoodPosition = ()  =>{
     //passando um valor aleatorio para a posição da comida posicionada no tabuleiro de 0-30
     foodX =Math.floor(Math.random()*30) +1;
@@ -25,10 +26,10 @@ const changeDirection = (e) => {
     }else if(e.key === "ArrowDown" && velocityY != -1){
         velocityX = 0;
         velocityY = 1;
-    }else if(e.key === "ArrowLeft" && velocityY != 1){
+    }else if(e.key === "ArrowLeft" && velocityX != 1){
         velocityX = -1;
         velocityY = 0;
-    }else if(e.key === "ArrowRight" && velocityY != -1){
+    }else if(e.key === "ArrowRight" && velocityX != -1){
         velocityX = 1;
         velocityY = 0;
     }
@@ -45,10 +46,12 @@ const  initGame = () => {
     if(snakeX === foodX && snakeY === foodY){
         changeFoodPosition();
         bodySnake.push([foodX,foodY]); // adicionando a comida ao corpo da cobra
+        score++;
+        scoreElement.innerText = `Pontuação: ${score}`;
     }
 
     //deslocando para frente os valores dos elementos no corpo da cobra em um
-    for (let i = bodySnake.length ; i > 0; i--) {
+    for (let i = bodySnake.length -1; i > 0; i--) {
         bodySnake[i] = bodySnake[i-1];   
     }
     
@@ -63,7 +66,12 @@ const  initGame = () => {
     }
 
     for (let i = 0; i < bodySnake.length; i++) {
+        //adicionando corpo na cobra
         htmlMarkup += `<div class="head" style="grid-area: ${bodySnake[i][1]} / ${bodySnake[i][0]}"></div>`;
+        //verificando se ela bateu no proprio corpo
+        if(i !== 0 && bodySnake[0][1]  === bodySnake[i][1] && bodySnake [0][0] === bodySnake[i][0]){
+            gameOver= true;
+        }
     }
     playBoard.innerHTML = htmlMarkup;
 }
