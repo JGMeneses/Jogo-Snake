@@ -6,7 +6,7 @@
 
 ## Layout principal
 
-![Pagina](./public/fotogame.png) 
+![Pagina](./icon/fotogame.png) 
 
 
 # Tecnologias utilizadas
